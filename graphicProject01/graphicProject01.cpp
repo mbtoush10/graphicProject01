@@ -1,7 +1,7 @@
 ﻿#include<GL/glut.h>
 #include<cmath>
 
-void init() {
+void init() {// 50 74 119
 	glClearColor(0.4039f, 0.7059f, 0.8314f, 1.0f); // Set background color to sky blue
 	glMatrixMode(GL_PROJECTION); // Switch to projection matrix to see the 2D with orthographic projection
 	glLoadIdentity(); // Load identity matrix
@@ -27,24 +27,20 @@ void cloude(float cx, float cy, float r) {
 	drawCircle(cx + 50, cy, r);
 	drawCircle(cx + 100, cy, r);
 }
+
 void sun(float cx, float cy, float r) {
 	glColor3ub(255, 229, 0);
 	drawCircle(cx, cy, r);
 }
 
 void wall() {
+	glLineWidth(1.9f);
 	glBegin(GL_LINES);
+
 	glColor3ub(153, 102, 51);
 	glVertex2f(0, 100);
 	glVertex2f(1280, 100);
-	glVertex2f(1, 100);
-	glVertex2f(1281, 100);
-	glVertex2f(2, 100);
-	glVertex2f(1282, 100);
-	glVertex2f(3, 100);
-	glVertex2f(1283, 100);
-	glVertex2f(4, 100);
-	glVertex2f(1284, 100);
+
 	glEnd();
 
 	for (int i = 0; i <= 1280; i += 25) {
@@ -57,6 +53,7 @@ void wall() {
 		glEnd();
 	}
 }
+
 void ad(float baseX, float baseY) {
 
 	glColor3ub(255, 255, 255);
@@ -181,6 +178,7 @@ void tree(float baseX, float baseY, float colorTree[2][3]) { // colorTree[0] = t
 	glEnd();
 
 }
+
 void build02(float baseX, float baseY) {
 
 	const int buldWidth = baseX + 120;
@@ -325,41 +323,40 @@ void build04(float baseX, float baseY)
 
 			drawCircle(winX, winY, 6);
 		}
-
 }
 
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	/*cloude(100, 600, 35);
 	cloude(600, 650, 35)*/;
-	//wall();
+	wall();
 	//sun(0, 540, 50);
 	//tower(500, 20, 50, 20, 17, 1.176);
 	//trafficLight(200, 100);
 
-	//float colorTree01[2][3] =
-	//{
-	//	{110, 105, 76},
-	//	{38, 158, 76}
-	//};
-	//tree(1000, 100, colorTree01);
+	/*float colorTree01[2][3] =
+	{
+		{110, 105, 76},
+		{38, 158, 76}
+	};
+	tree(1000, 100, colorTree01);
 
-	//float colorTree02[2][3] =
-	//{
-	//	{102, 51, 0},
-	//	{0, 128, 0}
-	//};
-	//tree(800, 100, colorTree02);
+	float colorTree02[2][3] =
+	{
+		{102, 51, 0},
+		{0, 128, 0}
+	};
+	tree(800, 100, colorTree02);
 
-	//float colorTree03[2][3] =
-	//{
-	//	{115, 140, 128},
-	//	{64, 178, 128}
-	//};
-	//tree(700, 300, colorTree03);
+	float colorTree03[2][3] =
+	{
+		{115, 140, 128},
+		{64, 178, 128}
+	};
+	tree(700, 300, colorTree03);
 
-	//build02(300, 100);
-	build04(300, 100);
+	build02(300, 100);
+	build04(300, 100);*/
 
 	glFlush();
 
