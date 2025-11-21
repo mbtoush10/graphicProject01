@@ -1,4 +1,5 @@
-﻿#include <GL/glut.h>
+﻿#include<GL/glut.h>
+#include<cmath>
 
 void init() {
 	glClearColor(0.4039f, 0.7059f, 0.8314f, 1.0f); // Set background color to sky blue
@@ -7,9 +8,29 @@ void init() {
 	gluOrtho2D(0, 1280, 0, 720); // Set the orthographic projection to match the window size
 }
 
+void drawCircle(float cx, float cy, float r) {
+	glBegin(GL_TRIANGLE_FAN);
+
+	for (int i = 0; i <= 360; i++) {
+		float angle = i * 3.14159f / 180.0f;
+		float x = cx + r * cos(angle);
+		float y = cy + r * sin(angle);
+		glVertex2f(x, y);
+	}
+
+	glEnd();
+}
+
+void cloude(float cx, float cy, float r) {
+	glColor3ub(255,255,255);
+	drawCircle(cx, cy, r);
+	drawCircle(cx + 50, cy, r);
+	drawCircle(cx + 100, cy, r);
+}
+
 void wall() {
-	glColor3ub(153, 102, 51);
 	glBegin(GL_LINES);
+	glColor3ub(153, 102, 51);
 	glVertex2f(0, 100);
 	glVertex2f(1280, 100);
 	glVertex2f(1, 100);
@@ -35,7 +56,8 @@ void wall() {
 
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
-
+	/*cloude(100, 600, 35);
+	cloude(600, 650, 35)*/;
 	//wall();
 
 	glFlush();
