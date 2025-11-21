@@ -325,11 +325,43 @@ void build04(float baseX, float baseY)
 		}
 }
 
+void car(float baseX, float baseY, int colorBody[]) {
+
+	// Body
+	glBegin(GL_POLYGON);
+
+	glColor3ub(colorBody[0], colorBody[1], colorBody[2]);
+	glVertex2d(baseX, baseY);
+	glVertex2d(baseX + 57, baseY);//
+	glVertex2d(baseX + 60, baseY + 6);//
+	glVertex2d(baseX + 53, baseY + 12);//
+	glVertex2d(baseX + 3, baseY + 12);
+	glVertex2d(baseX - 3, baseY + 6);
+
+	glEnd();
+
+	// Window
+	glBegin(GL_QUADS);
+
+	glColor3ub(153, 204, 255);
+	glVertex2d(baseX + 10, baseY + 9);
+	glVertex2d(baseX + 47, baseY + 9);
+	glVertex2d(baseX + 42, baseY + 14);
+	glVertex2d(baseX + 15, baseY + 14);
+	glEnd();
+
+	// Wheels
+	glColor3ub(25, 25, 25);
+	drawCircle(baseX + 10, baseY+1 , 4);
+	drawCircle(baseX + 47, baseY +1, 4);
+
+}
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	/*cloude(100, 600, 35);
 	cloude(600, 650, 35)*/;
-	wall();
+	//wall();
 	//sun(0, 540, 50);
 	//tower(500, 20, 50, 20, 17, 1.176);
 	//trafficLight(200, 100);
@@ -357,6 +389,12 @@ void display() {
 
 	build02(300, 100);
 	build04(300, 100);*/
+
+	int colorCar01[] = { 255, 178, 0 };
+	car(400, 100, colorCar01);
+
+	int colorCar02[] = { 0, 0, 255 };
+	car(600, 100, colorCar02);
 
 	glFlush();
 
