@@ -152,6 +152,36 @@ void trafficLight(int baseX, int baseY)
 	drawCircle(baseX + 5, baseY + 7, 3);
 }
 
+void tree(float baseX, float baseY, float colorTree[2][3]) { // colorTree[0] = trunk color, colorTree[1] = leaf color
+
+	glColor3ub(colorTree[0][0], colorTree[0][1], colorTree[0][2]);
+
+	glBegin(GL_QUADS);
+	glVertex2f(baseX, baseY);
+	glVertex2f(baseX + 12, baseY);
+	glVertex2f(baseX + 12, baseY + 30);
+	glVertex2f(baseX, baseY + 30);
+	glEnd();
+
+	glColor3ub(colorTree[1][0], colorTree[1][1], colorTree[1][2]);
+
+	glBegin(GL_TRIANGLES);
+	glVertex2d(baseX - 18, baseY + 30);
+	glVertex2d(baseX + 6, baseY + 60);
+	glVertex2d(baseX + 30, baseY + 30);
+
+	glVertex2d(baseX - 12, baseY + 48);
+	glVertex2d(baseX + 6, baseY + 78);
+	glVertex2d(baseX + 24, baseY + 48);
+
+	glVertex2d(baseX - 6, baseY + 66);
+	glVertex2d(baseX + 6, baseY + 85);
+	glVertex2d(baseX + 18, baseY + 66);
+
+	glEnd();
+
+}
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	/*cloude(100, 600, 35);
@@ -159,7 +189,29 @@ void display() {
 	//wall();
 	//sun(0, 540, 50);
 	//tower(500, 20, 50, 20, 17, 1.176);
-	trafficLight(200, 100);
+	//trafficLight(200, 100);
+
+	//float colorTree01[2][3] =
+	//{
+	//	{110, 105, 76},
+	//	{38, 158, 76}
+	//};
+	//tree(1000, 100, colorTree01);
+
+	//float colorTree02[2][3] =
+	//{
+	//	{102, 51, 0},
+	//	{0, 128, 0}
+	//};
+	//tree(800, 100, colorTree02);
+
+	//float colorTree03[2][3] =
+	//{
+	//	{115, 140, 128},
+	//	{64, 178, 128}
+	//};
+	//tree(700, 300, colorTree03);
+
 	glFlush();
 
 }
