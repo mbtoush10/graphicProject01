@@ -27,6 +27,10 @@ void cloude(float cx, float cy, float r) {
 	drawCircle(cx + 50, cy, r);
 	drawCircle(cx + 100, cy, r);
 }
+void sun(float cx, float cy, float r) {
+	glColor3ub(255, 229, 0);
+	drawCircle(cx, cy, r);
+}
 
 void wall() {
 	glBegin(GL_LINES);
@@ -59,7 +63,7 @@ void display() {
 	/*cloude(100, 600, 35);
 	cloude(600, 650, 35)*/;
 	//wall();
-
+	//sun(0, 540, 50);
 	glFlush();
 
 }
