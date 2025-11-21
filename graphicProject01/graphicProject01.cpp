@@ -57,6 +57,78 @@ void wall() {
 		glEnd();
 	}
 }
+void ad(float baseX, float baseY) {
+
+	glColor3ub(255, 255, 255);
+
+	int endX = baseX * 1.3759;
+	int endY = baseY * 1.28;
+
+	glBegin(GL_QUADS);
+
+	glVertex2f(baseX, baseY);
+	glVertex2f(endX, baseY);
+	glVertex2f(endX, endY);
+	glVertex2f(baseX, endY);
+
+	glEnd();
+
+	int space = 0;
+
+	for (int i = 0; i < 11; i++)
+	{
+		glColor3ub(138, 0, 0);
+		glBegin(GL_QUADS);
+
+		glVertex2f((baseX + 5) + space, baseY + 30);
+		glVertex2f((baseX + 11) + space, baseY + 30);
+		glVertex2f((baseX + 11) + space, endY - 30);
+		glVertex2f((baseX + 5) + space, endY - 30);
+
+		glEnd();
+
+		space += 15;
+	}
+
+	glColor3ub(128, 128, 128);
+	glBegin(GL_QUADS);
+
+	glVertex2f(baseX + 83, endY);
+	glVertex2f(baseX + 85, endY);
+	glVertex2f(baseX + 85, endY + 40);
+	glVertex2f(baseX + 83, endY + 40);
+
+	glEnd();
+}
+
+void tower(float base_x, float base_y, float base_width, float layer_height, int num_layers, float reduction_per_side) {
+	glColor4ub(178, 178, 51, 128);
+
+	float current_x = base_x;
+	float current_y = base_y;
+	float current_width = base_width;
+
+	for (int i = 0; i < num_layers; i++) {
+		float end_x = current_x + current_width;
+
+		glBegin(GL_QUADS); // Tower base 1st
+
+		glVertex2f(current_x, current_y);
+		glVertex2f(end_x, current_y);
+		glVertex2f(end_x, current_y + layer_height);
+		glVertex2f(current_x, current_y + layer_height);
+
+		glEnd();
+
+		current_y += layer_height;
+		current_x += reduction_per_side;
+		current_width -= (reduction_per_side * 2.0);
+
+		if (current_width <= 0) break;
+	}
+
+	ad(current_x - 80, current_y);
+}
 
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -64,6 +136,7 @@ void display() {
 	cloude(600, 650, 35)*/;
 	//wall();
 	//sun(0, 540, 50);
+	//tower(500, 20, 50, 20, 17, 1.176);
 	glFlush();
 
 }
