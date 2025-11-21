@@ -181,6 +181,112 @@ void tree(float baseX, float baseY, float colorTree[2][3]) { // colorTree[0] = t
 	glEnd();
 
 }
+void build02(float baseX, float baseY) {
+
+	const int buldWidth = baseX + 120;
+	const int buldHeight = baseY + 160;
+	const int midX = baseX + (buldWidth - baseX) / 2;
+
+	glBegin(GL_QUADS);
+
+	glColor3ub(178, 128, 76);
+	glVertex2d(baseX, baseY);
+	glVertex2d(buldWidth, baseY);
+	glVertex2d(buldWidth, buldHeight);
+	glVertex2d(baseX, buldHeight);
+
+	glEnd();
+
+	int xOffSet = 10;
+	const int boxWidth = 18;
+	int height = baseY + 110;
+
+	for (int i = 0; i < 3; i++) {
+		glBegin(GL_QUADS);
+
+		// Outer Box
+		glColor3ub(128, 76, 25);
+		glVertex2d(baseX + xOffSet, height);
+		glVertex2d(baseX + xOffSet + boxWidth, height);
+		glVertex2d(baseX + xOffSet + boxWidth, height + 18);
+		glVertex2d(baseX + xOffSet, height + 18);
+
+		// Frame
+		glColor3ub(25, 25, 25);
+		glVertex2d(baseX + xOffSet + 2, height);
+		glVertex2d(baseX + xOffSet + boxWidth - 2, height);
+		glVertex2d(baseX + xOffSet + boxWidth - 2, height + 18);
+		glVertex2d(baseX + xOffSet + 2, height + 18);
+
+		// Glass
+		glColor3ub(204, 229, 255);
+		glVertex2d(baseX + xOffSet + 5, height + 3);
+		glVertex2d(baseX + xOffSet + boxWidth - 5, height + 3);
+		glVertex2d(baseX + xOffSet + boxWidth - 5, height + 15);
+		glVertex2d(baseX + xOffSet + 5, height + 15);
+
+		glEnd();
+
+		xOffSet += (boxWidth + 10);
+	}
+	xOffSet = 10;
+	height -= 30;
+	for (int i = 0; i < 3; i++) {
+		glBegin(GL_QUADS);
+
+		// Outer Box
+		glColor3ub(128, 76, 25);
+		glVertex2d(baseX + xOffSet, height);
+		glVertex2d(baseX + xOffSet + boxWidth, height);
+		glVertex2d(baseX + xOffSet + boxWidth, height + 18);
+		glVertex2d(baseX + xOffSet, height + 18);
+
+		// Frame
+		glColor3ub(25, 25, 25);
+		glVertex2d(baseX + xOffSet + 2, height);
+		glVertex2d(baseX + xOffSet + boxWidth - 2, height);
+		glVertex2d(baseX + xOffSet + boxWidth - 2, height + 18);
+		glVertex2d(baseX + xOffSet + 2, height + 18);
+
+		// Glass
+		glColor3ub(204, 229, 255);
+		glVertex2d(baseX + xOffSet + 5, height + 3);
+		glVertex2d(baseX + xOffSet + boxWidth - 5, height + 3);
+		glVertex2d(baseX + xOffSet + boxWidth - 5, height + 15);
+		glVertex2d(baseX + xOffSet + 5, height + 15);
+		glEnd();
+
+
+		xOffSet += (boxWidth + 10);
+	}
+
+	// Roof
+	glBegin(GL_TRIANGLES);
+	glColor3ub(102, 51, 51);
+	glVertex2d(baseX - 10, buldHeight);
+	glVertex2d(buldWidth + 10, buldHeight);
+	glVertex2d(midX, buldHeight + 70);
+
+	glEnd();
+
+	// Door
+	glBegin(GL_QUADS);
+	glColor3ub(51, 25, 0);
+	glVertex2d(midX - 10, baseY);
+	glVertex2d(midX + 10, baseY);
+	glVertex2d(midX + 10, baseY + 60);
+	glVertex2d(midX - 10, baseY + 60);
+
+	// Door Handle
+	glColor3ub(204, 153, 51);
+	glVertex2d(midX + 6, baseY + 25);
+	glVertex2d(midX + 9, baseY + 25);
+	glVertex2d(midX + 9, baseY + 30);
+	glVertex2d(midX + 6, baseY + 30);
+
+	glEnd();
+
+}
 
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -211,6 +317,8 @@ void display() {
 	//	{64, 178, 128}
 	//};
 	//tree(700, 300, colorTree03);
+
+	build02(300, 100);
 
 	glFlush();
 
