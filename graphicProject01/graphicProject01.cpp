@@ -130,6 +130,28 @@ void tower(float base_x, float base_y, float base_width, float layer_height, int
 	ad(current_x - 80, current_y);
 }
 
+void trafficLight(int baseX, int baseY)
+{
+	glColor3ub(25, 25, 25);
+	glBegin(GL_QUADS);
+
+	glVertex2f(baseX, baseY);
+	glVertex2f(baseX + 10, baseY);
+	glVertex2f(baseX + 10, baseY + 35);
+	glVertex2f(baseX, baseY + 35);
+
+	glEnd();
+
+	glColor3ub(254, 0, 0);
+	drawCircle(baseX + 5, baseY + 27, 3);
+
+	glColor3ub(51, 51, 0);
+	drawCircle(baseX + 5, baseY + 17, 3);
+
+	glColor3ub(0, 51, 0);
+	drawCircle(baseX + 5, baseY + 7, 3);
+}
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	/*cloude(100, 600, 35);
@@ -137,6 +159,7 @@ void display() {
 	//wall();
 	//sun(0, 540, 50);
 	//tower(500, 20, 50, 20, 17, 1.176);
+	trafficLight(200, 100);
 	glFlush();
 
 }
