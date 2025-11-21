@@ -288,6 +288,46 @@ void build02(float baseX, float baseY) {
 
 }
 
+void build04(float baseX, float baseY)
+{
+	const int buldWidth = baseX + 100;
+	const int buldHeight = baseY + 175;
+	const int midX = baseX + (buldWidth - baseX) / 2;
+	// Building Base
+	glBegin(GL_QUADS);
+	glColor3ub(144, 128, 136);
+	glVertex2d(baseX, baseY);
+	glVertex2d(buldWidth, baseY);
+	glVertex2d(buldWidth, buldHeight);
+	glVertex2d(baseX, buldHeight);
+	glEnd();
+
+	// Roof
+	glBegin(GL_TRIANGLES);
+	glColor3ub(110, 110, 119);
+	glVertex2d(baseX, buldHeight);
+	glVertex2d(buldWidth, buldHeight);
+	glVertex2d(midX, buldHeight + 40);
+	glEnd();
+
+	// Windows
+	float startX = baseX + 17;
+	float startY = baseY + 20;
+
+	float spaceX = 22;
+	float spaceY = 25;
+
+	glColor3ub(204, 204, 153);
+	for (int row = 0; row < 6; row++)
+		for (int col = 0; col < 4; col++) {
+			float winX = startX + col * spaceX;
+			float winY = startY + row * spaceY;
+
+			drawCircle(winX, winY, 6);
+		}
+
+}
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	/*cloude(100, 600, 35);
@@ -318,7 +358,8 @@ void display() {
 	//};
 	//tree(700, 300, colorTree03);
 
-	build02(300, 100);
+	//build02(300, 100);
+	build04(300, 100);
 
 	glFlush();
 
