@@ -54,7 +54,6 @@ void wall() {
 	}
 }
 
-
 void street() {
 	glColor3ub(51, 51, 51);
 
@@ -272,7 +271,7 @@ void build02(float baseX, float baseY) {
 
 void build03(int x, int y) {
 	int buildwidth = x + 120;
-	int buildheight = y + 195;
+	int buildheight = y + 200;
 
 
 	glBegin(GL_QUADS);
@@ -292,11 +291,11 @@ void build03(int x, int y) {
 	glEnd();
 
 	int win_w = 21;
-	int win_h = 19;
+	int win_h = 20;
 	int gap_x = 9;
 	int gap_y = 13;
 	int start_x = x + 9;
-	int start_y = y + 13;
+	int start_y = y + 14;
 	glColor3ub(204, 204, 153);
 	for (int row = 0; row < 6; row++) {
 		for (int col = 0; col < 4; col++) {
@@ -316,7 +315,7 @@ void build03(int x, int y) {
 void build04(float baseX, float baseY)
 {
 	const int buldWidth = baseX + 100;
-	const int buldHeight = baseY + 175;
+	const int buldHeight = baseY + 190;
 	const int midX = baseX + (buldWidth - baseX) / 2;
 	// Building Base
 	glBegin(GL_QUADS);
@@ -332,18 +331,18 @@ void build04(float baseX, float baseY)
 	glColor3ub(110, 110, 119);
 	glVertex2d(baseX, buldHeight);
 	glVertex2d(buldWidth, buldHeight);
-	glVertex2d(midX, buldHeight + 40);
+	glVertex2d(midX, buldHeight + 35);
 	glEnd();
 
 	// Windows
 	float startX = baseX + 17;
-	float startY = baseY + 20;
+	float startY = baseY + 15;
 
 	float spaceX = 22;
 	float spaceY = 25;
 
 	glColor3ub(204, 204, 153);
-	for (int row = 0; row < 6; row++)
+	for (int row = 0; row <= 6; row++)
 		for (int col = 0; col < 4; col++) {
 			float winX = startX + col * spaceX;
 			float winY = startY + row * spaceY;
