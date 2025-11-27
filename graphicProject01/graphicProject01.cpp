@@ -96,8 +96,137 @@ void ad(float baseX, float baseY) {
 	glVertex2f(baseX + 83, endY + 40);
 
 	glEnd();
-}
+}void street() {
+	glColor3f(0.0f, 0.0f, 0.0f);
+	glBegin(GL_QUADS);
+	glVertex2f(0, 75);
+	glVertex2f(1280, 75);
+	glVertex2f(1280, 190);
+	glVertex2f(0, 190);
+	glEnd();
+	for (int i = 0; i <= 1280; i += 75) {
+		glColor3f(1, 1, 1);
+		glBegin(GL_QUADS);
+		glVertex2f(i, 122);
+		glVertex2f(i + 50, 122);
+		glVertex2f(i + 50, 142);
+		glVertex2f(i, 142);
+		glEnd();
+	}
+}void sidewalk() {
 
+	glBegin(GL_QUADS);
+	glColor3ub(128, 128, 128);
+	glVertex2f(0, 190);
+	glVertex2f(1280, 190);
+	glVertex2f(1280, 235);
+	glVertex2f(0, 235);
+	glEnd();
+
+
+}void build01(int x, int y) {
+
+
+	int buildwidth = x + 200;
+	int buildheight = y + 240;
+	int mid = x + (buildwidth - x) / 2;
+	glBegin(GL_QUADS);
+
+	glColor3ub(220, 220, 230);
+	glVertex2d(x, y);
+	glVertex2d(buildwidth, y);
+	glVertex2d(buildwidth, buildheight);
+	glVertex2d(x, buildheight);
+
+	glEnd();
+	int glass_x = x + 10;
+	int glass_y = (buildheight / 2) + 100;
+	glBegin(GL_QUADS);
+
+	glColor3ub(0, 0, 0);
+	glVertex2d(glass_x, glass_y);
+	glVertex2d(buildwidth - 10, glass_y);
+	glVertex2d(buildwidth - 10, buildheight - 15);
+	glVertex2d(glass_x, buildheight - 15);
+
+	glEnd();
+	glBegin(GL_QUADS);
+	glColor3ub(170, 210, 255);
+	glVertex2d(glass_x + 5, glass_y + 5);
+	glVertex2d(buildwidth - 15, glass_y + 5);
+	glVertex2d(buildwidth - 15, buildheight - 20);
+	glVertex2d(glass_x + 5, buildheight - 20);
+	glEnd();
+	glBegin(GL_QUADS);
+	glColor3ub(95, 90, 120);
+	glVertex2d(x - 7, buildheight - 7);
+	glVertex2d(buildwidth + 7, buildheight - 7);
+	glVertex2d(buildwidth + 7, buildheight + 15);
+	glVertex2d(x - 7, buildheight + 15);
+	glEnd();
+	int door_y = (buildheight / 2) + 25;
+	glBegin(GL_QUADS);
+	glColor3ub(51, 25, 0);
+	glVertex2d(mid - 25, y);
+	glVertex2d(mid + 25, y);
+	glVertex2d(mid + 25, door_y + 60);
+	glVertex2d(mid - 25, door_y + 60);
+	glEnd();
+
+}void build03(int x, int y) {
+	int buildwidth = x + 200;
+	int buildheight = y + 300;
+
+
+	glBegin(GL_QUADS);
+	glColor3ub(135, 180, 220);
+	glVertex2d(x, y);
+	glVertex2d(buildwidth, y);
+	glVertex2d(buildwidth, buildheight);
+	glVertex2d(x, buildheight);
+	glEnd();
+
+	glBegin(GL_QUADS);
+	glColor3ub(70, 100, 130);
+	glVertex2d(x - 10, buildheight);
+	glVertex2d(buildwidth + 10, buildheight);
+	glVertex2d(buildwidth + 10, buildheight + 8);
+	glVertex2d(x - 10, buildheight + 8);
+	glEnd();
+
+	int win_w = 35;
+	int win_h = 30;
+	int gap_x = 15;
+	int gap_y = 20;
+	int start_x = x + 15;
+	int start_y = y + 20;
+	glColor3ub(230, 230, 180);
+	for (int row = 0; row < 6; row++) {
+		for (int col = 0; col < 4; col++) {
+			int cx = start_x + col * (win_w + gap_x);
+			int cy = start_y + row * (win_h + gap_y);
+
+			glBegin(GL_QUADS);
+			glVertex2f(cx, cy);
+			glVertex2f(cx + win_w, cy);
+			glVertex2f(cx + win_w, cy + win_h);
+			glVertex2f(cx, cy + win_h);
+			glEnd();
+		}
+	}
+}
+void grass() {
+	glColor3f(0.0f, 1.0f, 0.0f);
+
+
+
+	glBegin(GL_QUADS);
+	glVertex2f(0, 0);
+	glVertex2f(1280, 0);
+	glVertex2f(0, 100);
+	glVertex2f(1280, 100);
+	glEnd();
+}
 void tower(float base_x, float base_y, float base_width, float layer_height, int num_layers, float reduction_per_side) {
 	glColor4ub(178, 178, 51, 128);
 
