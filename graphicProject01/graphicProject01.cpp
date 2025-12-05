@@ -540,6 +540,84 @@ void streetLight(float baseX)
 	drawCircle(baseX + 5, 310, 20);
 }
 
+void helicopter(int x, int y) {
+
+	// vertical
+	glBegin(GL_QUADS);
+	glColor3ub(0, 0, 0);
+	glVertex2d(x + 16.8, y - 17.5);
+	glVertex2d(x + 18.55, y - 17.5);
+	glVertex2d(x + 18.55, y + 35);
+	glVertex2d(x + 16.8, y + 35);
+	glEnd();
+
+	// Horizontal
+	glBegin(GL_QUADS);
+	glColor3ub(0, 0, 0);
+	glVertex2d(x - 10.5, y + 8.75);
+	glVertex2d(x - 10.5, y + 7);
+	glVertex2d(x + 45.5, y + 7);
+	glVertex2d(x + 45.5, y + 8.75);
+	glEnd();
+
+	// Tail boom
+	glBegin(GL_LINES);
+	glColor3ub(128, 128, 128);
+	glVertex2d(x, y + 10.5);
+	glVertex2d(x - 35, y + 10.5);
+	glEnd();
+
+	// Tail fin
+	glBegin(GL_QUADS);
+	glColor3ub(128, 128, 128);
+	glVertex2d(x - 35, y + 10.15);
+	glVertex2d(x - 35.7, y + 10.15);
+	glVertex2d(x - 35.7, y + 11.9);
+	glVertex2d(x - 35, y + 11.9);
+	glEnd();
+
+	// Tail wider
+	glBegin(GL_QUADS);
+	glColor3ub(128, 128, 128);
+
+	glVertex2d(x - 33.95, y + 11.9);
+	glVertex2d(x - 36.75, y + 11.9);
+	glVertex2d(x - 36.75, y + 14.7);
+	glVertex2d(x - 33.95, y + 14.7);
+
+	glVertex2d(x - 32.9, y + 14.7);
+	glVertex2d(x - 37.45, y + 14.7);
+	glVertex2d(x - 37.45, y + 16.1);
+	glVertex2d(x - 32.9, y + 16.1);
+
+	glColor3ub(0, 0, 0);
+	glVertex2d(x - 32.9, y + 15.4);
+	glVertex2d(x - 38.15, y + 15.4);
+	glVertex2d(x - 38.15, y + 17.5);
+	glVertex2d(x - 32.9, y + 17.5);
+	glEnd();
+
+	// Body
+	glBegin(GL_POLYGON);
+	glColor3ub(160, 0, 0);
+	glVertex2d(x, y);
+	glVertex2d(x, y + 17.5);
+	glVertex2d(x + 31.5, y + 17.5);
+	glVertex2d(x + 38.5, y + 8.75);
+	glVertex2d(x + 38.5, y + 5.25);
+	glVertex2d(x + 34.3, y);
+	glEnd();
+
+	// Window
+	glBegin(GL_QUADS);
+	glColor3ub(178, 204, 229);
+	glVertex2d(x + 17.5, y + 10.5);
+	glVertex2d(x + 17.5, y + 15.75);
+	glVertex2d(x + 23.1, y + 15.75);
+	glVertex2d(x + 23.1, y + 10.5);
+	glEnd();
+}
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
@@ -592,6 +670,8 @@ void display() {
 
 	int colorCar02[] = { 0, 0, 255 };
 	car(600, 60, colorCar02);
+
+	helicopter(900, 600);
 
 	glFlush();
 
