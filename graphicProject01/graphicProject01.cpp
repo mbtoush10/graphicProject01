@@ -21,6 +21,25 @@ void drawCircle(float cx, float cy, float r) {
 	glEnd();
 }
 
+void drawEmptyCircle(float cx, float cy, float radius, int num_segments, float thickness) {
+	float innerRadius = radius;
+	float outerRadius = radius + thickness;
+
+	glBegin(GL_TRIANGLE_STRIP);
+	for (int i = 0; i <= num_segments; i++) {
+		float angle = 2.0f * 3.1415926f * i / num_segments;
+		float x_inner = cx + innerRadius * cos(angle);
+		float y_inner = cy + innerRadius * sin(angle);
+		float x_outer = cx + outerRadius * cos(angle);
+		float y_outer = cy + outerRadius * sin(angle);
+
+		glVertex2f(x_outer, y_outer);
+		glVertex2f(x_inner, y_inner);
+	}
+	glEnd();
+
+}
+
 void cloude(float cx, float cy, float r) {
 	glColor3ub(255,255,255);
 	drawCircle(cx, cy, r);
@@ -618,6 +637,62 @@ void helicopter(int x, int y) {
 	glEnd();
 }
 
+void bicycle(float baseX, float baseY)
+{
+	glColor3ub(25, 25, 128);
+
+	// Wheels
+	drawEmptyCircle(baseX, baseY, 12.0f, 100, 3.0f);
+	drawEmptyCircle(baseX + 40, baseY, 12.0f, 100, 3.0f);
+
+	glLineWidth(3.0f);
+	glBegin(GL_LINES);
+
+	// Center wheel spokes
+	glVertex2f(baseX, baseY);
+	glVertex2f(baseX + 40, baseY);
+
+	// Left wheel spokes
+	glVertex2f(baseX, baseY);
+	glVertex2f(baseX + 20, baseY + 20);
+
+	glVertex2f(baseX + 20, baseY + 20);
+	glVertex2f(baseX + 20, baseY + 25);
+
+	// Right wheel spokes
+	glVertex2f(baseX + 40, baseY);
+	glVertex2f(baseX + 20, baseY + 20);
+
+	// Steering rod
+	glVertex2f(baseX + 40, baseY);
+	glVertex2f(baseX + 60, baseY + 15);
+
+	glEnd();
+
+	// Head
+	glColor3ub(255, 204, 153);
+	drawCircle(baseX + 25, baseY + 25, 5);
+
+	// Eyes
+	glColor3ub(0, 0, 0);
+	glPointSize(2.0f);
+
+	glBegin(GL_POINTS);
+
+	glVertex2d(baseX + 23, baseY + 27);
+	glVertex2d(baseX + 27, baseY + 27);
+
+	glEnd();
+
+	glLineWidth(3.0f);
+	glBegin(GL_LINES);
+
+
+	glEnd();
+
+}
+
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
@@ -672,6 +747,8 @@ void display() {
 	car(600, 60, colorCar02);
 
 	helicopter(900, 600);
+
+	bicycle(600, 600);
 
 	glFlush();
 
