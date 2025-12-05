@@ -38,8 +38,8 @@ void wall() {
 	glBegin(GL_LINES);
 
 	glColor3ub(153, 102, 51);
-	glVertex2f(0, 215); // +20
-	glVertex2f(1280, 215);
+	glVertex2f(0, 210); // +20
+	glVertex2f(1280, 210);
 
 	glEnd();
 
@@ -48,8 +48,8 @@ void wall() {
 		glBegin(GL_QUADS);
 		glVertex2f(10 + i, 200); // 200
 		glVertex2f(14 + i, 200);
-		glVertex2f(14 + i, 222); //227
-		glVertex2f(10 + i, 222);
+		glVertex2f(14 + i, 217); //227
+		glVertex2f(10 + i, 217);
 		glEnd();
 	}
 }
@@ -396,7 +396,7 @@ void ad(float baseX, float baseY) {
 }
 
 void tower(float base_x, float base_y, float base_width, float layer_height, int num_layers, float reduction_per_side) {
-	glColor4ub(178, 178, 51, 128);
+	glColor3ub(178, 178, 51);
 
 	float current_x = base_x;
 	float current_y = base_y;
@@ -446,34 +446,37 @@ void trafficLight(int baseX, int baseY)
 	drawCircle(baseX + 5, baseY + 7, 3);
 }
 
-void tree(float baseX, float baseY, float colorTree[2][3]) { // colorTree[0] = trunk color, colorTree[1] = leaf color
+void tree(float baseX, float baseY, float colorTree[2][3]) {
 
 	glColor3ub(colorTree[0][0], colorTree[0][1], colorTree[0][2]);
 
 	glBegin(GL_QUADS);
-	glVertex2f(baseX, baseY);
-	glVertex2f(baseX + 12, baseY);
-	glVertex2f(baseX + 12, baseY + 30);
-	glVertex2f(baseX, baseY + 30);
+	glVertex2d(baseX, baseY);
+	glVertex2d(baseX + 7.2, baseY);
+	glVertex2d(baseX + 7.2, baseY + 18);
+	glVertex2d(baseX, baseY + 18);
 	glEnd();
 
 	glColor3ub(colorTree[1][0], colorTree[1][1], colorTree[1][2]);
 
 	glBegin(GL_TRIANGLES);
-	glVertex2d(baseX - 18, baseY + 30);
-	glVertex2d(baseX + 6, baseY + 60);
-	glVertex2d(baseX + 30, baseY + 30);
 
-	glVertex2d(baseX - 12, baseY + 48);
-	glVertex2d(baseX + 6, baseY + 78);
-	glVertex2d(baseX + 24, baseY + 48);
+	// layer 1
+	glVertex2d(baseX - 10.8, baseY + 18);
+	glVertex2d(baseX + 3.6, baseY + 36);
+	glVertex2d(baseX + 18, baseY + 18);
 
-	glVertex2d(baseX - 6, baseY + 66);
-	glVertex2d(baseX + 6, baseY + 85);
-	glVertex2d(baseX + 18, baseY + 66);
+	// layer 2
+	glVertex2d(baseX - 7.2, baseY + 28.8);
+	glVertex2d(baseX + 3.6, baseY + 46.8);
+	glVertex2d(baseX + 14.4, baseY + 28.8);
+
+	// layer 3
+	glVertex2d(baseX - 3.6, baseY + 39.6);
+	glVertex2d(baseX + 3.6, baseY + 51);
+	glVertex2d(baseX + 10.8, baseY + 39.6);
 
 	glEnd();
-
 }
 
 void car(float baseX, float baseY, int colorBody[]) {
@@ -500,8 +503,41 @@ void car(float baseX, float baseY, int colorBody[]) {
 
 	// Wheels
 	glColor3ub(25, 25, 25);
-	drawCircle(baseX + 15, baseY + 1, 6);
-	drawCircle(baseX + 70, baseY + 1, 6);
+	drawCircle(baseX + 15, baseY + 1, 6.5);
+	drawCircle(baseX + 70, baseY + 1, 6.5);
+}
+
+void streetLight(float baseX) 
+{
+	glBegin(GL_QUADS);
+	glColor3ub(128, 128, 128);
+
+	glVertex2d(baseX, 200);
+	glVertex2d(baseX + 10, 200);
+	glVertex2d(baseX + 10, 217);
+	glVertex2d(baseX, 217);
+
+	glVertex2d(baseX + 1, 217);
+	glVertex2d(baseX + 9, 217);
+	glVertex2d(baseX + 9, 260);
+	glVertex2d(baseX + 1, 260);
+
+	glVertex2d(baseX + 2, 260);
+	glVertex2d(baseX + 8, 260);
+	glVertex2d(baseX + 8, 300);
+	glVertex2d(baseX + 2, 300);
+
+
+	glEnd();
+
+	glColor3ub(219, 219, 204);
+	drawCircle(baseX + 5, 310, 12);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glColor4ub(219, 219, 204,128);
+	drawCircle(baseX + 5, 310, 20);
 }
 
 void display() {
@@ -527,7 +563,7 @@ void display() {
 		{102, 51, 0},
 		{0, 128, 0}
 	};
-	tree(700, 200, colorTree02);
+	tree(775, 200, colorTree02);
 	float colorTree03[2][3] = {
 		{115, 140, 128},
 		{64, 178, 128}
@@ -538,12 +574,18 @@ void display() {
 
 	tower(575, 150, 50, 20, 17, 1.176);
 
-	trafficLight(50, 275);
+	trafficLight(60, 275);
 
 	build01(100, 200);
 	build02(300, 200);
 	build03(875, 200);
 	build04(1080, 200);
+
+	streetLight(30);
+	streetLight(345);
+	streetLight(700);
+	streetLight(850);
+	streetLight(1200);
 
 	int colorCar01[] = { 255, 178, 0 };
 	car(400, 104, colorCar01);
