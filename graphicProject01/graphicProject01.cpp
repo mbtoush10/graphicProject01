@@ -618,7 +618,7 @@ void helicopter(int x, int y) {
 
 	// Body
 	glBegin(GL_POLYGON);
-	glColor3ub(160, 0, 0);
+	glColor3ub(204, 0, 0);
 	glVertex2d(x, y);
 	glVertex2d(x, y + 17.5);
 	glVertex2d(x + 31.5, y + 17.5);
@@ -641,57 +641,55 @@ void bicycle(float baseX, float baseY)
 {
 	glColor3ub(25, 25, 128);
 
+
+
 	// Wheels
 	drawEmptyCircle(baseX, baseY, 12.0f, 100, 3.0f);
 	drawEmptyCircle(baseX + 40, baseY, 12.0f, 100, 3.0f);
-
 	glLineWidth(3.0f);
 	glBegin(GL_LINES);
-
 	// Center wheel spokes
 	glVertex2f(baseX, baseY);
 	glVertex2f(baseX + 40, baseY);
-
 	// Left wheel spokes
 	glVertex2f(baseX, baseY);
 	glVertex2f(baseX + 20, baseY + 20);
-
 	glVertex2f(baseX + 20, baseY + 20);
 	glVertex2f(baseX + 20, baseY + 25);
-
 	// Right wheel spokes
 	glVertex2f(baseX + 40, baseY);
 	glVertex2f(baseX + 20, baseY + 20);
-
 	// Steering rod
 	glVertex2f(baseX + 40, baseY);
 	glVertex2f(baseX + 60, baseY + 15);
-
 	glEnd();
-
 	// Head
 	glColor3ub(255, 204, 153);
 	drawCircle(baseX + 25, baseY + 25, 5);
-
+	//bady
+	glLineWidth(3.0f);
+	glBegin(GL_LINES);
+	glColor3ub(200, 0, 0);
+	glVertex2d(baseX + 24, baseY + 30);
+	glVertex2d(baseX + 24, baseY + 15);
+	glVertex2d(baseX + 24, baseY + 20);
+	glVertex2f(baseX + 55, baseY + 15);
+	glVertex2d(baseX + 24, baseY + 15);
+	glVertex2d(baseX + 10, baseY - 7);
+	glVertex2d(baseX + 24, baseY + 15);
+	glVertex2d(baseX + 30, baseY - 7);
+	glEnd();
 	// Eyes
 	glColor3ub(0, 0, 0);
 	glPointSize(2.0f);
 
-	glBegin(GL_POINTS);
 
+
+	glBegin(GL_POINTS);
 	glVertex2d(baseX + 23, baseY + 27);
 	glVertex2d(baseX + 27, baseY + 27);
-
 	glEnd();
-
-	glLineWidth(3.0f);
-	glBegin(GL_LINES);
-
-
-	glEnd();
-
 }
-
 
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -700,12 +698,6 @@ void display() {
 
 	cloude(740, 520, 25);
 	cloude(50, 570, 25);
-
-	grass();
-
-	street();
-
-	sidewalk();
 
 	float colorTree01[2][3] = {
 		{110, 105, 76},
@@ -722,6 +714,14 @@ void display() {
 		{64, 178, 128}
 	};
 	tree(1025, 200, colorTree03);
+
+	bicycle(800, 203);
+
+	grass();
+
+	street();
+
+	sidewalk();
 
 	wall();
 
@@ -747,8 +747,6 @@ void display() {
 	car(600, 60, colorCar02);
 
 	helicopter(900, 600);
-
-	bicycle(600, 600);
 
 	glFlush();
 
